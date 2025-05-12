@@ -30,4 +30,4 @@ async def chat(request: Request):
         reply = response.choices[0].message.content.strip()
         return {"reply": reply}
     except Exception as e:
-        return {"error": str(e)}"
+        return {"error": str(e)}

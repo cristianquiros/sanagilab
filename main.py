@@ -5,11 +5,13 @@ import os
 
 app = FastAPI()
 
+# Clave API de OpenAI desde variable de entorno
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+# Configuración CORS para permitir desde tu dominio
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://sanagilab.com"],  # O usa ["*"] temporalmente
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -17,12 +19,12 @@ app.add_middleware(
 
 @app.post("/chat")
 async def chat(request: Request):
-    data = await request.json()
-    user_message = data.get("message", "")
-    if not user_message:
-        return {"error": "Mensaje vacío"}
-
     try:
+        data = await request.json()
+        user_message = data.get("message", "")
+        if not user_message:
+            return {"error": "Mensaje vacío"}
+
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": user_message}]

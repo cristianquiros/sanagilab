@@ -9,7 +9,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # temporalmente abierto para pruebas
+    allow_origins=["*"],  # usa "*" mientras probamos
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

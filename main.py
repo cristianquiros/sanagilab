@@ -5,13 +5,11 @@ import os
 
 app = FastAPI()
 
-# Clave API de OpenAI desde variable de entorno
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Configuración CORS para permitir desde tu dominio
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://sanagilab.com"],  # O usa ["*"] temporalmente
+    allow_origins=["*"],  # temporalmente abierto para pruebas
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
